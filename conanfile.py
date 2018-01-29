@@ -16,7 +16,7 @@ class PortableconcurrencyConan(ConanFile):
     generators = "cmake"
 
     def source(self):
-        self.run("git clone https://github.com/kmaragon/portable_concurrency.git")
+        self.run("git clone https://github.com/VestniK/portable_concurrency.git")
 
     def build(self):
         # check out the appropriate branch

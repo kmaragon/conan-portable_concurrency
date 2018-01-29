@@ -22,7 +22,10 @@ class PortableconcurrencyTestConan(ConanFile):
         tools.replace_in_file('CMakeLists.txt', 'find_package(GTest REQUIRED)', '''include("${CMAKE_CURRENT_BINARY_DIR}/conanbuildinfo.cmake")
 conan_basic_setup()''')
 
+
         tools.replace_in_file('CMakeLists.txt', 'target_link_libraries(unit_tests portable_concurrency GTest::GTest GTest::Main', 'target_link_libraries(unit_tests ${CONAN_LIBS}')
+
+        tools.replace_in_file('CMakeLists.txt', 'once_consumable_stack.cpp', '')
 
         cmake = CMake(self)
         cmake.configure(source_folder=self.build_folder)
