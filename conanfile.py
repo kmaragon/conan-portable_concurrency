@@ -9,10 +9,9 @@ class PortableconcurrencyConan(ConanFile):
     description = "Conan package for VestniK's portable_concurrency implementation"
     settings = "os", "compiler", "build_type", "arch"
     options = {
-            "shared": [True, False],
-            "strict_ts": [True, False]
+            "shared": [True, False]
     }
-    default_options = "shared=False","strict_ts=False"
+    default_options = "shared=False"
     generators = "cmake"
 
     def source(self):
@@ -20,11 +19,10 @@ class PortableconcurrencyConan(ConanFile):
 
     def build(self):
         # check out the appropriate branch
-        if self.options.strict_ts:
-            self.run('cd portable_concurrency && git reset --hard && git checkout strict-ts')
-        else:
-            self.run('cd portable_concurrency && git reset --hard && git checkout master')
-
+        # if self.options.strict_ts:
+        #    self.run('cd portable_concurrency && git reset --hard && git checkout strict-ts')
+        # else:
+        #    self.run('cd portable_concurrency && git reset --hard && git checkout master')
 
         # let test_package test the package
         tools.replace_in_file('portable_concurrency/CMakeLists.txt', 'add_subdirectory(test)', '')
